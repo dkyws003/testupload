@@ -1,0 +1,50 @@
+server:
+  port: 9555
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 5120MB
+      max-request-size: 5120MB
+  datasource:
+    name: mysql-datasource
+    url: jdbc:mysql://192.168.25.172:3306/vip_file_manager?characterEncoding=UTF-8
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+    default-property-inclusion: non_null
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      # 全局默认主键类型
+      id-type: UUID
+      # 表名、是否使用下划线命名，默认数据库表使用下划线命名
+      table-underline: true
+      # 逻辑已删除值(默认为 1)
+      logic-delete-value: true
+      # 逻辑未删除值(默认为 0)
+      logic-not-delete-value: false
+  mapper-locations:
+  - /mapper/*.xml
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countsql
+swagger:
+  title: VIP-FILE-MANAGER Swagger API
+  description: 本地文件管理服务
+  version: 1.0.0
+logging:
+  config: classpath:logback.xml
+file:
+  # 文件存储路径
+  save-path: G:\temp\file-manager
+  # 断点续传文件配置路径
+  conf-path: G:\temp\file-manager\conf
